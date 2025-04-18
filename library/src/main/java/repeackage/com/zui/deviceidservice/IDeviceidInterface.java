@@ -39,6 +39,11 @@ package repeackage.com.zui.deviceidservice;
  *
  *     }
  * </pre>
+ *     removed methods:
+ *         String getUDID();
+ *         String getVAID(String str);
+ *         String getAAID(String str);
+ *         String createAAIDForPackageName(String str);
  */
 @SuppressWarnings("All")
 public interface IDeviceidInterface extends android.os.IInterface {
@@ -52,28 +57,8 @@ public interface IDeviceidInterface extends android.os.IInterface {
         }
 
         @Override
-        public java.lang.String getUDID() throws android.os.RemoteException {
-            return null;
-        }
-
-        @Override
         public boolean isSupport() throws android.os.RemoteException {
             return false;
-        }
-
-        @Override
-        public java.lang.String getVAID(java.lang.String str) throws android.os.RemoteException {
-            return null;
-        }
-
-        @Override
-        public java.lang.String getAAID(java.lang.String str) throws android.os.RemoteException {
-            return null;
-        }
-
-        @Override
-        public java.lang.String createAAIDForPackageName(java.lang.String str) throws android.os.RemoteException {
-            return null;
         }
 
         @Override
@@ -130,45 +115,11 @@ public interface IDeviceidInterface extends android.os.IInterface {
                     reply.writeString(_result);
                     return true;
                 }
-                case TRANSACTION_getUDID: {
-                    data.enforceInterface(descriptor);
-                    java.lang.String _result = this.getUDID();
-                    reply.writeNoException();
-                    reply.writeString(_result);
-                    return true;
-                }
                 case TRANSACTION_isSupport: {
                     data.enforceInterface(descriptor);
                     boolean _result = this.isSupport();
                     reply.writeNoException();
                     reply.writeInt(((_result) ? (1) : (0)));
-                    return true;
-                }
-                case TRANSACTION_getVAID: {
-                    data.enforceInterface(descriptor);
-                    java.lang.String _arg0;
-                    _arg0 = data.readString();
-                    java.lang.String _result = this.getVAID(_arg0);
-                    reply.writeNoException();
-                    reply.writeString(_result);
-                    return true;
-                }
-                case TRANSACTION_getAAID: {
-                    data.enforceInterface(descriptor);
-                    java.lang.String _arg0;
-                    _arg0 = data.readString();
-                    java.lang.String _result = this.getAAID(_arg0);
-                    reply.writeNoException();
-                    reply.writeString(_result);
-                    return true;
-                }
-                case TRANSACTION_createAAIDForPackageName: {
-                    data.enforceInterface(descriptor);
-                    java.lang.String _arg0;
-                    _arg0 = data.readString();
-                    java.lang.String _result = this.createAAIDForPackageName(_arg0);
-                    reply.writeNoException();
-                    reply.writeString(_result);
                     return true;
                 }
                 default: {
@@ -214,26 +165,6 @@ public interface IDeviceidInterface extends android.os.IInterface {
             }
 
             @Override
-            public java.lang.String getUDID() throws android.os.RemoteException {
-                android.os.Parcel _data = android.os.Parcel.obtain();
-                android.os.Parcel _reply = android.os.Parcel.obtain();
-                java.lang.String _result;
-                try {
-                    _data.writeInterfaceToken(DESCRIPTOR);
-                    boolean _status = mRemote.transact(Stub.TRANSACTION_getUDID, _data, _reply, 0);
-                    if (!_status && getDefaultImpl() != null) {
-                        return getDefaultImpl().getUDID();
-                    }
-                    _reply.readException();
-                    _result = _reply.readString();
-                } finally {
-                    _reply.recycle();
-                    _data.recycle();
-                }
-                return _result;
-            }
-
-            @Override
             public boolean isSupport() throws android.os.RemoteException {
                 android.os.Parcel _data = android.os.Parcel.obtain();
                 android.os.Parcel _reply = android.os.Parcel.obtain();
@@ -253,78 +184,11 @@ public interface IDeviceidInterface extends android.os.IInterface {
                 return _result;
             }
 
-            @Override
-            public java.lang.String getVAID(java.lang.String str) throws android.os.RemoteException {
-                android.os.Parcel _data = android.os.Parcel.obtain();
-                android.os.Parcel _reply = android.os.Parcel.obtain();
-                java.lang.String _result;
-                try {
-                    _data.writeInterfaceToken(DESCRIPTOR);
-                    _data.writeString(str);
-                    boolean _status = mRemote.transact(Stub.TRANSACTION_getVAID, _data, _reply, 0);
-                    if (!_status && getDefaultImpl() != null) {
-                        return getDefaultImpl().getVAID(str);
-                    }
-                    _reply.readException();
-                    _result = _reply.readString();
-                } finally {
-                    _reply.recycle();
-                    _data.recycle();
-                }
-                return _result;
-            }
-
-            @Override
-            public java.lang.String getAAID(java.lang.String str) throws android.os.RemoteException {
-                android.os.Parcel _data = android.os.Parcel.obtain();
-                android.os.Parcel _reply = android.os.Parcel.obtain();
-                java.lang.String _result;
-                try {
-                    _data.writeInterfaceToken(DESCRIPTOR);
-                    _data.writeString(str);
-                    boolean _status = mRemote.transact(Stub.TRANSACTION_getAAID, _data, _reply, 0);
-                    if (!_status && getDefaultImpl() != null) {
-                        return getDefaultImpl().getAAID(str);
-                    }
-                    _reply.readException();
-                    _result = _reply.readString();
-                } finally {
-                    _reply.recycle();
-                    _data.recycle();
-                }
-                return _result;
-            }
-
-            @Override
-            public java.lang.String createAAIDForPackageName(java.lang.String str) throws android.os.RemoteException {
-                android.os.Parcel _data = android.os.Parcel.obtain();
-                android.os.Parcel _reply = android.os.Parcel.obtain();
-                java.lang.String _result;
-                try {
-                    _data.writeInterfaceToken(DESCRIPTOR);
-                    _data.writeString(str);
-                    boolean _status = mRemote.transact(Stub.TRANSACTION_createAAIDForPackageName, _data, _reply, 0);
-                    if (!_status && getDefaultImpl() != null) {
-                        return getDefaultImpl().createAAIDForPackageName(str);
-                    }
-                    _reply.readException();
-                    _result = _reply.readString();
-                } finally {
-                    _reply.recycle();
-                    _data.recycle();
-                }
-                return _result;
-            }
-
             public static IDeviceidInterface sDefaultImpl;
         }
 
         static final int TRANSACTION_getOAID = (android.os.IBinder.FIRST_CALL_TRANSACTION + 0);
-        static final int TRANSACTION_getUDID = (android.os.IBinder.FIRST_CALL_TRANSACTION + 1);
         static final int TRANSACTION_isSupport = (android.os.IBinder.FIRST_CALL_TRANSACTION + 2);
-        static final int TRANSACTION_getVAID = (android.os.IBinder.FIRST_CALL_TRANSACTION + 3);
-        static final int TRANSACTION_getAAID = (android.os.IBinder.FIRST_CALL_TRANSACTION + 4);
-        static final int TRANSACTION_createAAIDForPackageName = (android.os.IBinder.FIRST_CALL_TRANSACTION + 5);
 
         public static boolean setDefaultImpl(IDeviceidInterface impl) {
             // Only one user of this interface can use this function
@@ -347,13 +211,5 @@ public interface IDeviceidInterface extends android.os.IInterface {
 
     public java.lang.String getOAID() throws android.os.RemoteException;
 
-    public java.lang.String getUDID() throws android.os.RemoteException;
-
     public boolean isSupport() throws android.os.RemoteException;
-
-    public java.lang.String getVAID(java.lang.String str) throws android.os.RemoteException;
-
-    public java.lang.String getAAID(java.lang.String str) throws android.os.RemoteException;
-
-    public java.lang.String createAAIDForPackageName(java.lang.String str) throws android.os.RemoteException;
 }

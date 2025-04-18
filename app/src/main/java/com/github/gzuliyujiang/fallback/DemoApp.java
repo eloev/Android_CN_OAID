@@ -18,7 +18,7 @@ import android.content.Context;
 
 import androidx.multidex.MultiDex;
 
-import com.github.gzuliyujiang.oaid.DeviceIdentifier;
+import com.github.gzuliyujiang.oaid.DeviceID;
 import com.github.gzuliyujiang.oaid.IRegisterCallback;
 import com.github.gzuliyujiang.oaid.OAIDLog;
 
@@ -55,7 +55,7 @@ public class DemoApp extends Application {
         //注意APP合规性，若最终用户未同意隐私政策则不要调用
         if (privacyPolicyAgreed) {
             //DeviceIdentifier.register(this);
-            DeviceIdentifier.register(this, false, new IRegisterCallback() {
+            DeviceID.register(this, new IRegisterCallback() {
                 @Override
                 public void onComplete(String clientId, Exception error) {
                     // do something

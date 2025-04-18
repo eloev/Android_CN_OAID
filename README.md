@@ -2,6 +2,15 @@
 
 # Android_CN_OAID
 
+# Fork
+- Removed AAID request (and gms libs)
+- Removed IMEI request (and manifest permissions)
+- Removed AndroidID, WidevineId, pseudoId, guid, canvasFingerprint, clientId requests
+
+- Only the OAID request remains. Use DeviceId for get it, DeviceIdentifier also removed.
+
+# Original description:
+
 ![Release APK](https://github.com/gzu-liyujiang/Android_CN_OAID/workflows/Release%20APK/badge.svg)
 ![Gradle Package](https://github.com/gzu-liyujiang/Android_CN_OAID/workflows/Gradle%20Package/badge.svg)
 
@@ -167,8 +176,6 @@ dependencies {
 -keep interface repeackage.com.coolpad.deviceidsupport.** { *; }
 -keep class repeackage.com.android.creator.** { *; }
 -keep interface repeackage.com.android.creator.** { *; }
--keep class repeackage.com.google.android.gms.ads.identifier.internal.** { *; }
--keep interface repeackage.com.google.android.gms.ads.identifier.internal.* { *; }
 -keep class repeackage.com.oplus.stdid.** {*; }
 -keep interface repeackage.com.oplus.stdid.** {*; }
 -keep class com.huawei.hms.ads.** {*; }
@@ -222,20 +229,6 @@ dependencies {
 - 酷派手机  `待验证`
 - 酷赛手机  `待验证`
 - 卓易手机  `待验证`
-
-### AAID（安卓广告标识符）
-
-- 谷歌手机 ![google](/screenshot/aaid_google.png)
-- 中兴手机 ![zte](/screenshot/aaid_zte.png)
-- 摩托罗拉 ![motorola](/screenshot/aaid_motorola.png)
-- 索尼手机 ![sony](/screenshot/aaid_sony.png)
-- 诺基亚机 ![nokia](/screenshot/aaid_nokia.png)
-- HTC 手机 ![htc](/screenshot/aaid_htc.png)
-- LG 手机 ![lge](/screenshot/aaid_lge.png)
-
-### 不支持 OAID 或 AAID
-
-- 用户关闭了广告标识符
 
 ![disabled](/screenshot/oaid_disabled.png)
 

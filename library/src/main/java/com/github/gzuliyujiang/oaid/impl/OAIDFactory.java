@@ -106,18 +106,14 @@ public final class OAIDFactory {
 
     private static IOAID createUniversalImpl(Context context) {
         // 若各厂商自家没有提供接口，则优先尝试移动安全联盟的接口
+        // If the vendors do not provide their own interfaces, the Mobile Security Alliance interface will be used first.
         IOAID ioaid = new MsaImpl(context);
         if (ioaid.supported()) {
             OAIDLog.print("Mobile Security Alliance has been found: " + ioaid.getClass().getName());
             return ioaid;
         }
-        // 若不支持移动安全联盟的接口，则尝试谷歌服务框架的接口
-        ioaid = new GmsImpl(context);
-        if (ioaid.supported()) {
-            OAIDLog.print("Google Play Service has been found: " + ioaid.getClass().getName());
-            return ioaid;
-        }
         // 默认不支持
+        // Not supported by default
         ioaid = new DefaultImpl();
         OAIDLog.print("OAID/AAID was not supported: " + ioaid.getClass().getName());
         return ioaid;

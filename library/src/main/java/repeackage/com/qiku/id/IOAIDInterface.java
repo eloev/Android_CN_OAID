@@ -1,3 +1,10 @@
+/**
+ *     removed methods:
+ *         String getUDID()
+ *         String getVAID(String str);
+ *         String getAAID(String str);
+ *         resetOAID();
+ */
 /*
  * This file is auto-generated.  DO NOT MODIFY.
  */
@@ -11,26 +18,11 @@ public interface IOAIDInterface extends android.os.IInterface
     {
       return false;
     }
-    @Override public String getUDID() throws android.os.RemoteException
-    {
-      return null;
-    }
     @Override public String getOAID() throws android.os.RemoteException
     {
       return null;
     }
-    @Override public String getVAID() throws android.os.RemoteException
-    {
-      return null;
-    }
-    @Override public String getAAID() throws android.os.RemoteException
-    {
-      return null;
-    }
     @Override public void shutDown() throws android.os.RemoteException
-    {
-    }
-    @Override public void resetOAID() throws android.os.RemoteException
     {
     }
     @Override public boolean limitReadOAID() throws android.os.RemoteException
@@ -88,14 +80,6 @@ public interface IOAIDInterface extends android.os.IInterface
           reply.writeInt(((_result)?(1):(0)));
           return true;
         }
-        case TRANSACTION_getUDID:
-        {
-          data.enforceInterface(descriptor);
-          String _result = this.getUDID();
-          reply.writeNoException();
-          reply.writeString(_result);
-          return true;
-        }
         case TRANSACTION_getOAID:
         {
           data.enforceInterface(descriptor);
@@ -104,33 +88,10 @@ public interface IOAIDInterface extends android.os.IInterface
           reply.writeString(_result);
           return true;
         }
-        case TRANSACTION_getVAID:
-        {
-          data.enforceInterface(descriptor);
-          String _result = this.getVAID();
-          reply.writeNoException();
-          reply.writeString(_result);
-          return true;
-        }
-        case TRANSACTION_getAAID:
-        {
-          data.enforceInterface(descriptor);
-          String _result = this.getAAID();
-          reply.writeNoException();
-          reply.writeString(_result);
-          return true;
-        }
         case TRANSACTION_shutDown:
         {
           data.enforceInterface(descriptor);
           this.shutDown();
-          reply.writeNoException();
-          return true;
-        }
-        case TRANSACTION_resetOAID:
-        {
-          data.enforceInterface(descriptor);
-          this.resetOAID();
           reply.writeNoException();
           return true;
         }
@@ -183,26 +144,6 @@ public interface IOAIDInterface extends android.os.IInterface
         }
         return _result;
       }
-      @Override public String getUDID() throws android.os.RemoteException
-      {
-        android.os.Parcel _data = android.os.Parcel.obtain();
-        android.os.Parcel _reply = android.os.Parcel.obtain();
-        String _result;
-        try {
-          _data.writeInterfaceToken(DESCRIPTOR);
-          boolean _status = mRemote.transact(Stub.TRANSACTION_getUDID, _data, _reply, 0);
-          if (!_status && getDefaultImpl() != null) {
-            return getDefaultImpl().getUDID();
-          }
-          _reply.readException();
-          _result = _reply.readString();
-        }
-        finally {
-          _reply.recycle();
-          _data.recycle();
-        }
-        return _result;
-      }
       @Override public String getOAID() throws android.os.RemoteException
       {
         android.os.Parcel _data = android.os.Parcel.obtain();
@@ -223,46 +164,6 @@ public interface IOAIDInterface extends android.os.IInterface
         }
         return _result;
       }
-      @Override public String getVAID() throws android.os.RemoteException
-      {
-        android.os.Parcel _data = android.os.Parcel.obtain();
-        android.os.Parcel _reply = android.os.Parcel.obtain();
-        String _result;
-        try {
-          _data.writeInterfaceToken(DESCRIPTOR);
-          boolean _status = mRemote.transact(Stub.TRANSACTION_getVAID, _data, _reply, 0);
-          if (!_status && getDefaultImpl() != null) {
-            return getDefaultImpl().getVAID();
-          }
-          _reply.readException();
-          _result = _reply.readString();
-        }
-        finally {
-          _reply.recycle();
-          _data.recycle();
-        }
-        return _result;
-      }
-      @Override public String getAAID() throws android.os.RemoteException
-      {
-        android.os.Parcel _data = android.os.Parcel.obtain();
-        android.os.Parcel _reply = android.os.Parcel.obtain();
-        String _result;
-        try {
-          _data.writeInterfaceToken(DESCRIPTOR);
-          boolean _status = mRemote.transact(Stub.TRANSACTION_getAAID, _data, _reply, 0);
-          if (!_status && getDefaultImpl() != null) {
-            return getDefaultImpl().getAAID();
-          }
-          _reply.readException();
-          _result = _reply.readString();
-        }
-        finally {
-          _reply.recycle();
-          _data.recycle();
-        }
-        return _result;
-      }
       @Override public void shutDown() throws android.os.RemoteException
       {
         android.os.Parcel _data = android.os.Parcel.obtain();
@@ -272,24 +173,6 @@ public interface IOAIDInterface extends android.os.IInterface
           boolean _status = mRemote.transact(Stub.TRANSACTION_shutDown, _data, _reply, 0);
           if (!_status && getDefaultImpl() != null) {
             getDefaultImpl().shutDown();
-            return;
-          }
-          _reply.readException();
-        }
-        finally {
-          _reply.recycle();
-          _data.recycle();
-        }
-      }
-      @Override public void resetOAID() throws android.os.RemoteException
-      {
-        android.os.Parcel _data = android.os.Parcel.obtain();
-        android.os.Parcel _reply = android.os.Parcel.obtain();
-        try {
-          _data.writeInterfaceToken(DESCRIPTOR);
-          boolean _status = mRemote.transact(Stub.TRANSACTION_resetOAID, _data, _reply, 0);
-          if (!_status && getDefaultImpl() != null) {
-            getDefaultImpl().resetOAID();
             return;
           }
           _reply.readException();
@@ -322,12 +205,8 @@ public interface IOAIDInterface extends android.os.IInterface
       public static IOAIDInterface sDefaultImpl;
     }
     static final int TRANSACTION_isSupported = (android.os.IBinder.FIRST_CALL_TRANSACTION + 0);
-    static final int TRANSACTION_getUDID = (android.os.IBinder.FIRST_CALL_TRANSACTION + 1);
     static final int TRANSACTION_getOAID = (android.os.IBinder.FIRST_CALL_TRANSACTION + 2);
-    static final int TRANSACTION_getVAID = (android.os.IBinder.FIRST_CALL_TRANSACTION + 3);
-    static final int TRANSACTION_getAAID = (android.os.IBinder.FIRST_CALL_TRANSACTION + 4);
     static final int TRANSACTION_shutDown = (android.os.IBinder.FIRST_CALL_TRANSACTION + 5);
-    static final int TRANSACTION_resetOAID = (android.os.IBinder.FIRST_CALL_TRANSACTION + 6);
     static final int TRANSACTION_limitReadOAID = (android.os.IBinder.FIRST_CALL_TRANSACTION + 7);
     public static boolean setDefaultImpl(IOAIDInterface impl) {
       // Only one user of this interface can use this function
@@ -347,11 +226,7 @@ public interface IOAIDInterface extends android.os.IInterface
     }
   }
   public boolean isSupported() throws android.os.RemoteException;
-  public String getUDID() throws android.os.RemoteException;
   public String getOAID() throws android.os.RemoteException;
-  public String getVAID() throws android.os.RemoteException;
-  public String getAAID() throws android.os.RemoteException;
   public void shutDown() throws android.os.RemoteException;
-  public void resetOAID() throws android.os.RemoteException;
   public boolean limitReadOAID() throws android.os.RemoteException;
 }

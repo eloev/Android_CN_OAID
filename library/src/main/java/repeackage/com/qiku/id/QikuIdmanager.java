@@ -12,12 +12,8 @@ public class QikuIdmanager {
 
 
     public static int CODE_IS_SUPPORTED =IBinder.FIRST_CALL_TRANSACTION + 1;
-    public static int CODE_GET_UDID =IBinder.FIRST_CALL_TRANSACTION + 2;
     public static int CODE_GET_OAID =IBinder.FIRST_CALL_TRANSACTION + 3;
-    public static int CODE_GET_VAID =IBinder.FIRST_CALL_TRANSACTION + 4;
-    public static int CODE_GET_AAID =IBinder.FIRST_CALL_TRANSACTION + 5;
     public static int CODE_SHUTDOWN =IBinder.FIRST_CALL_TRANSACTION + 6;
-    public static final int CODE_RESET_OAID =IBinder.FIRST_CALL_TRANSACTION + 7;
     public static final int CODE_LIMIT_READ_OAID =IBinder.FIRST_CALL_TRANSACTION + 8;
 
 
@@ -61,24 +57,6 @@ public class QikuIdmanager {
         return false;
     }
 
-    public String getUDID() {
-        if (mIBinder != null) {
-            Parcel data = Parcel.obtain();
-            Parcel reply = Parcel.obtain();
-            try {
-                mIBinder.transact(CODE_GET_UDID, data, reply, 0);
-                String udid = reply.readString();
-                return udid;
-            } catch (RemoteException e) {
-                e.printStackTrace();
-            }finally{
-                data.recycle();
-                reply.recycle();
-            }
-        }
-        return null;
-    }
-
     public String getOAID() {
         if (mIBinder != null) {
             Parcel data = Parcel.obtain();
@@ -87,42 +65,6 @@ public class QikuIdmanager {
                 mIBinder.transact(CODE_GET_OAID, data, reply, 0);
                 String oaid = reply.readString();
                 return oaid;
-            } catch (RemoteException e) {
-                e.printStackTrace();
-            }finally{
-                data.recycle();
-                reply.recycle();
-            }
-        }
-        return null;
-    }
-
-    public String getVAID() {
-        if (mIBinder != null) {
-            Parcel data = Parcel.obtain();
-            Parcel reply = Parcel.obtain();
-            try {
-                mIBinder.transact(CODE_GET_VAID, data, reply, 0);
-                String vaid = reply.readString();
-                return vaid;
-            } catch (RemoteException e) {
-                e.printStackTrace();
-            }finally{
-                data.recycle();
-                reply.recycle();
-            }
-        }
-        return null;
-    }
-
-    public String getAAID() {
-        if (mIBinder != null) {
-            Parcel data = Parcel.obtain();
-            Parcel reply = Parcel.obtain();
-            try {
-                mIBinder.transact(CODE_GET_AAID, data, reply, 0);
-                String aaid = reply.readString();
-                return aaid;
             } catch (RemoteException e) {
                 e.printStackTrace();
             }finally{

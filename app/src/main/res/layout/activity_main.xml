@@ -40,7 +40,7 @@
             android:id="@+id/btn_get_device_id_1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="用法一：实时获取设备标识符"
+            android:text="Usage 1: Get device identifier in real time"
             android:textAllCaps="false"
             tools:ignore="HardcodedText" />
 
@@ -48,7 +48,7 @@
             android:id="@+id/btn_get_device_id_2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="用法二：预先获取设备标识符"
+            android:text="Usage 2: Get device identifier in advance"
             android:textAllCaps="false"
             tools:ignore="HardcodedText" />
 

@@ -16,7 +16,6 @@ package com.github.gzuliyujiang.fallback;
 import android.Manifest;
 import android.os.Build;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,7 +26,6 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.github.gzuliyujiang.oaid.DeviceID;
-import com.github.gzuliyujiang.oaid.DeviceIdentifier;
 import com.github.gzuliyujiang.oaid.IGetter;
 import com.github.gzuliyujiang.oaid.OAIDLog;
 
@@ -70,8 +68,6 @@ public class MainActivity extends AppCompatActivity implements ActivityResultCal
                 return;
             }
             resultLauncher.launch(Manifest.permission.READ_PHONE_STATE);
-        } else if (id == R.id.btn_get_device_id_2) {
-            tvDeviceIdResult.setText(String.format("ClientId: %s", DeviceIdentifier.getClientId()));
         } else {
             OAIDLog.print("\"if ... else if\" constructs should end with \"else\" clauses.");
         }
@@ -79,42 +75,12 @@ public class MainActivity extends AppCompatActivity implements ActivityResultCal
 
     private void obtainDeviceId() {
         final StringBuilder builder = new StringBuilder();
-        builder.append("IMEI: ");
-        // 获取设备唯一标识，只支持Android 10之前的系统，需要READ_PHONE_STATE权限，可能为空
-        String imei = DeviceIdentifier.getIMEI(this);
-        if (TextUtils.isEmpty(imei)) {
-            builder.append("DID/IMEI/MEID获取失败");
-        } else {
-            builder.append(imei);
-        }
-        builder.append("\n");
-        builder.append("AndroidID: ");
-        // 获取安卓ID，可能为空
-        String androidID = DeviceIdentifier.getAndroidID(this);
-        if (TextUtils.isEmpty(androidID)) {
-            builder.append("AndroidID获取失败");
-        } else {
-            builder.append(androidID);
-        }
-        builder.append("\n");
-        builder.append("PseudoID: ");
-        // 获取伪造ID，根据硬件信息生成，不会为空，有大概率会重复
-        builder.append(DeviceIdentifier.getPseudoID());
-        builder.append("\n");
-        builder.append("GUID: ");
-        // 获取GUID，随机生成，不会为空
-        builder.append(DeviceIdentifier.getGUID(this));
-        builder.append("\n");
-        builder.append("CanvasFingerprint: ");
-        // 获取帆布指纹，不会为空，具有一定的唯一性，但不能完全保证全球唯一。
-        builder.append(DeviceIdentifier.getCanvasFingerprint());
-        builder.append("\n");
         // 是否支持OAID/AAID
         builder.append("supported: ").append(DeviceID.supportedOAID(this));
         builder.append("\n");
         builder.append("OAID: ");
         // 获取OAID，同步调用，第一次可能为空
-        builder.append(DeviceIdentifier.getOAID(this));
+        builder.append(DeviceID.getOAID());
         builder.append("\n");
         // 获取OAID/AAID，异步回调
         DeviceID.getOAID(this, new IGetter() {
